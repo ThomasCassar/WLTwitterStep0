@@ -1325,7 +1325,8 @@ containing a value of this type.
         public static final int white_round_corners_background=0x7f020038;
     }
     public static final class id {
-        public static final int actionLogout=0x7f0d0045;
+        public static final int HelloTexte=0x7f0d0041;
+        public static final int actionLogout=0x7f0d0046;
         public static final int action_bar=0x7f0d0031;
         public static final int action_bar_activity_content=0x7f0d0000;
         public static final int action_bar_container=0x7f0d0030;
@@ -1339,11 +1340,11 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0d002e;
         public static final int action_mode_bar_stub=0x7f0d002d;
         public static final int action_mode_close_button=0x7f0d0020;
-        public static final int action_settings=0x7f0d0044;
+        public static final int action_settings=0x7f0d0045;
         public static final int activity_chooser_view_content=0x7f0d0021;
         public static final int always=0x7f0d0016;
         public static final int beginning=0x7f0d0013;
-        public static final int button=0x7f0d0043;
+        public static final int button=0x7f0d0044;
         public static final int checkbox=0x7f0d0029;
         public static final int collapseActionView=0x7f0d0017;
         public static final int decor_content_parent=0x7f0d002f;
@@ -1363,12 +1364,12 @@ containing a value of this type.
         public static final int imageView2=0x7f0d003f;
         public static final int listMode=0x7f0d0009;
         public static final int list_item=0x7f0d0025;
-        public static final int loginEditText=0x7f0d0041;
+        public static final int loginEditText=0x7f0d0042;
         public static final int middle=0x7f0d0015;
         public static final int never=0x7f0d0019;
         public static final int none=0x7f0d000e;
         public static final int normal=0x7f0d000a;
-        public static final int passwordEditText=0x7f0d0042;
+        public static final int passwordEditText=0x7f0d0043;
         public static final int progress_circular=0x7f0d0005;
         public static final int progress_horizontal=0x7f0d0006;
         public static final int radio=0x7f0d002b;

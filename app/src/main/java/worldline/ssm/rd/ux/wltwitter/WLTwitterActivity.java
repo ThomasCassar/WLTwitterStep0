@@ -17,11 +17,12 @@ public class WLTwitterActivity extends Activity  {
     //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Creation of the subtitle
 
+        //Creation of the subtitle
         //Get string store in intent extras
         String login = getIntent().getExtras().getString(Constants.Preferences.PREF_LOGIN);
 
