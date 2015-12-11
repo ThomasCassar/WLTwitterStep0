@@ -2,6 +2,7 @@ package worldline.ssm.rd.ux.wltwitter.async;
 
 import android.os.AsyncTask;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.util.List;
 
@@ -18,15 +19,21 @@ public class RetrieveTweetsAsyncTask extends AsyncTask<String, Integer, List<Twe
 
     @Override
     protected void onPostExecute(List<Tweet> tweets) {
-        super.onPostExecute(tweets);
-        int i;
-        for ( i=0 ; i< tweets.size() ; i++) {
-            System.out.println("[" +appName+"]" + tweets.get(i).text);
+        if(tweets != null){
+            super.onPostExecute(tweets);
+            int i;
+            for ( i=0 ; i< tweets.size() ; i++) {
+                System.out.println("[" +appName+"]" + tweets.get(i).text);
+            }
+        }else{
+            Log.e("AsyncTask", "Pas de tweets");
         }
+
     }
 
     @Override
     protected List<Tweet> doInBackground(String... params) {
+        Log.d("AsyncTask", "Démarrage async task");
         if (TextUtils.isEmpty(params[0])){
             return null;
         }

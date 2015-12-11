@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import worldline.ssm.rd.ux.wltwitter.async.RetrieveTweetsAsyncTask;
+import worldline.ssm.rd.ux.wltwitter.utils.Constants;
 
 
 public class WLTwitterActivity extends Activity  {
@@ -21,14 +23,17 @@ public class WLTwitterActivity extends Activity  {
         //Creation of the subtitle
 
         //Get string store in intent extras
-        String login = getIntent().getExtras().getString("Login");
+        String login = getIntent().getExtras().getString(Constants.Preferences.PREF_LOGIN);
 
-        //Set the sub to be a String
-        getActionBar().setSubtitle((login));
+        if(login != null){
+            //Set the sub to be a String
+            getActionBar().setSubtitle((login));
 
-        //Thread
-        RetrieveTweetsAsyncTask task = new RetrieveTweetsAsyncTask();
-        task.execute(login);
+
+            //Thread
+            RetrieveTweetsAsyncTask task = new RetrieveTweetsAsyncTask();
+            task.execute(login);
+        }
     }
 
 

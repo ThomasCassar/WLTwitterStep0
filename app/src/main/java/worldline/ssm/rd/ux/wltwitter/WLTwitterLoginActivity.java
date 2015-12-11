@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import worldline.ssm.rd.ux.wltwitter.utils.Constants;
+
 
 /**
  * Created by cassar on 03/12/15.
@@ -27,11 +29,11 @@ public class WLTwitterLoginActivity extends Activity implements View.OnClickList
 
         //Launch main activity if login and password are not NULL
         Context context = getApplication();
-        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        if ((sharedPref.getString("login", "null") != "null") && (sharedPref.getString("password", "null") != "null")) {
+        SharedPreferences sharedPref = context.getSharedPreferences(Constants.Preferences.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+        if ((sharedPref.getString(Constants.Preferences.PREF_LOGIN, "null") != "null") && (sharedPref.getString(Constants.Preferences.PREF_PASSWORD, "null") != "null")) {
             Intent intent = new Intent(getApplicationContext(), WLTwitterActivity.class);
             Bundle extras = new Bundle();
-            extras.putString("login", sharedPref.getString("login", "null"));
+            extras.putString(Constants.Preferences.PREF_LOGIN, sharedPref.getString(Constants.Preferences.PREF_LOGIN, "null"));
             intent.putExtras(extras);
             startActivity(intent);
         }
@@ -55,20 +57,20 @@ public class WLTwitterLoginActivity extends Activity implements View.OnClickList
 
             //Creation of the main application
             Context context = getApplication();
-            SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+            SharedPreferences sharedPref = context.getSharedPreferences(Constants.Preferences.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
 
             SharedPreferences.Editor editor = sharedPref.edit();
 
             //Creation login and password
-            editor.putString("password",passwdText.getText().toString());
-            editor.putString("login", logText.getText().toString());
+            editor.putString(Constants.Preferences.PREF_PASSWORD,passwdText.getText().toString());
+            editor.putString(Constants.Preferences.PREF_LOGIN, logText.getText().toString());
             editor.commit();
 
 
             //Generate intent and send it
             Intent intent = new Intent(getApplicationContext(), WLTwitterActivity.class);
             Bundle extras = new Bundle();
-            extras.putString("login", logText.getText().toString());
+            extras.putString(Constants.Preferences.PREF_LOGIN, logText.getText().toString());
             intent.putExtras(extras);
             startActivity(intent);
 
