@@ -352,9 +352,10 @@ int drawable abc_textfield_search_material 0x7f020032
 int drawable blue_round_corners_background 0x7f020033
 int drawable blue_white_text_selector 0x7f020034
 int drawable ic_launcher 0x7f020035
-int drawable twitter 0x7f020036
-int drawable white_blue_round_corners_selector 0x7f020037
-int drawable white_round_corners_background 0x7f020038
+int drawable ic_twitter 0x7f020036
+int drawable twitter 0x7f020037
+int drawable white_blue_round_corners_selector 0x7f020038
+int drawable white_round_corners_background 0x7f020039
 int id HelloTexte 0x7f0d0041
 int id actionLogout 0x7f0d0046
 int id action_bar 0x7f0d0031

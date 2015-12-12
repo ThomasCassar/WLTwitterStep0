@@ -33,7 +33,7 @@ public class WLTwitterActivity extends Activity  {
         TextView loginDisplay = (TextView) findViewById(R.id.HelloTexte);
 
         if (intent != null) {
-            loginDisplay.setText("Welcome " + login + " to your Twitter App! Let's tweet!");
+            loginDisplay.setText( login + ": Welcome  to your Twitter App! Let's tweet!");
 
 
         }
