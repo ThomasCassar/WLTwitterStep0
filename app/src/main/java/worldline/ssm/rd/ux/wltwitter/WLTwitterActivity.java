@@ -2,11 +2,15 @@ package worldline.ssm.rd.ux.wltwitter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import worldline.ssm.rd.ux.wltwitter.async.RetrieveTweetsAsyncTask;
 import worldline.ssm.rd.ux.wltwitter.utils.Constants;
@@ -21,10 +25,19 @@ public class WLTwitterActivity extends Activity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //Creation of the subtitle
         //Get string store in intent extras
         String login = getIntent().getExtras().getString(Constants.Preferences.PREF_LOGIN);
+
+        Intent intent = getIntent();
+        TextView loginDisplay = (TextView) findViewById(R.id.HelloTexte);
+
+        if (intent != null) {
+            loginDisplay.setText("Welcome " + login + " to your Twitter App! Let's tweet!");
+
+
+        }
+
 
         if(login != null){
             //Set the sub to be a String
@@ -35,6 +48,8 @@ public class WLTwitterActivity extends Activity  {
             RetrieveTweetsAsyncTask task = new RetrieveTweetsAsyncTask();
             task.execute(login);
         }
+
+
     }
 
 
@@ -60,6 +75,7 @@ public class WLTwitterActivity extends Activity  {
 
         return super.onOptionsItemSelected(item);
     }
+
     public void logout() {
         //Delete previous log in preferences
 

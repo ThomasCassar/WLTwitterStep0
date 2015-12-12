@@ -23,11 +23,11 @@
         android:id="@+id/relativeLayout"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
+
     <TextView
         android:id="@+id/HelloTexte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to your Twitter App"
         android:gravity="center|center_vertical|center_horizontal" />
 
     </RelativeLayout>
