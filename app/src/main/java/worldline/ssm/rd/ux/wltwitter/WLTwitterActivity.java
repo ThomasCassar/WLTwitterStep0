@@ -1,6 +1,7 @@
 package worldline.ssm.rd.ux.wltwitter;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -19,12 +20,13 @@ import java.util.List;
 
 import worldline.ssm.rd.ux.wltwitter.async.RetrieveTweetsAsyncTask;
 import worldline.ssm.rd.ux.wltwitter.interfaces.TweetChangeListener;
+import worldline.ssm.rd.ux.wltwitter.interfaces.TweetListener;
 import worldline.ssm.rd.ux.wltwitter.pojo.Tweet;
 import worldline.ssm.rd.ux.wltwitter.ui.fragments.TweetsFragment;
 import worldline.ssm.rd.ux.wltwitter.utils.Constants;
 
 
-public class WLTwitterActivity extends Activity  {
+public class WLTwitterActivity extends Activity implements TweetListener {
 
 //    @Override
 //    public void onViewTweet(Tweet tweet) {
@@ -108,6 +110,17 @@ public class WLTwitterActivity extends Activity  {
         editor.commit();
 
         finish(); // Close the activity and go to the login one.
+    }
+
+
+
+    @Override
+    public void onRetweet(Tweet tweet) {
+    }
+
+    @Override
+    public void onViewTweet(Tweet tweet) {
+        Toast.makeText(this,tweet.text,Toast.LENGTH_LONG).show();
     }
 }
 

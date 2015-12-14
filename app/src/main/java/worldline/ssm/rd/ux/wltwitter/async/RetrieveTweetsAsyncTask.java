@@ -30,16 +30,16 @@ public class RetrieveTweetsAsyncTask extends AsyncTask<String, Integer, List<Twe
             mListener.onTweetRetrived(tweets);
         }
 
-//        //A METTRE EN COMMENTAIRE SI NECESSAIRE
-//        if(tweets != null){
-//            super.onPostExecute(tweets);
-//            int i;
-//            for ( i=0 ; i< tweets.size() ; i++) {
-//                System.out.println("[" +appName+"]" + tweets.get(i).text);
-//            }
-//        }else{
-//            Log.e("AsyncTask", "Pas de tweets");
-//        }
+        //A METTRE EN COMMENTAIRE SI NECESSAIRE
+        if(tweets != null){
+            super.onPostExecute(tweets);
+            int i;
+            for ( i=0 ; i< tweets.size() ; i++) {
+                System.out.println("[" +appName+"]" + tweets.get(i).text);
+            }
+        }else{
+            Log.e("AsyncTask", "Pas de tweets");
+        }
 
     }
 
