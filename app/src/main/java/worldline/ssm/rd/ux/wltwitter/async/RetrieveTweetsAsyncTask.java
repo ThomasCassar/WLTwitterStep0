@@ -8,6 +8,7 @@ import java.util.List;
 
 
 import worldline.ssm.rd.ux.wltwitter.helpers.TwitterHelper;
+import worldline.ssm.rd.ux.wltwitter.interfaces.TweetChangeListener;
 import worldline.ssm.rd.ux.wltwitter.pojo.Tweet;
 /**
  * Created by cassar on 10/12/15.
@@ -17,17 +18,28 @@ public class RetrieveTweetsAsyncTask extends AsyncTask<String, Integer, List<Twe
 
     public String appName = "TestTweet";
 
+    private TweetChangeListener mListener;
+
+    public RetrieveTweetsAsyncTask(TweetChangeListener mListener) {
+        this.mListener = mListener;
+    }
+
     @Override
     protected void onPostExecute(List<Tweet> tweets) {
-        if(tweets != null){
-            super.onPostExecute(tweets);
-            int i;
-            for ( i=0 ; i< tweets.size() ; i++) {
-                System.out.println("[" +appName+"]" + tweets.get(i).text);
-            }
-        }else{
-            Log.e("AsyncTask", "Pas de tweets");
+        if (mListener != null){
+            mListener.onTweetRetrived(tweets);
         }
+
+//        //A METTRE EN COMMENTAIRE SI NECESSAIRE
+//        if(tweets != null){
+//            super.onPostExecute(tweets);
+//            int i;
+//            for ( i=0 ; i< tweets.size() ; i++) {
+//                System.out.println("[" +appName+"]" + tweets.get(i).text);
+//            }
+//        }else{
+//            Log.e("AsyncTask", "Pas de tweets");
+//        }
 
     }
 

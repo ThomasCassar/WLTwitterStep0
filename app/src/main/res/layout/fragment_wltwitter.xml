@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="worldline.ssm.rd.ux.wltwitter.ui.fragments.TweetsFragment"
+    android:id="@+id/tweetRootRelativeLayout"
+    android:gravity="center">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:id="@+id/tweetsListView"
+        android:layout_gravity="center_horizontal|bottom"></ListView>
+
+</FrameLayout>

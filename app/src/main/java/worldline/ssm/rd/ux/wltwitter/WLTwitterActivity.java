@@ -1,6 +1,8 @@
 package worldline.ssm.rd.ux.wltwitter;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,19 +13,33 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 import worldline.ssm.rd.ux.wltwitter.async.RetrieveTweetsAsyncTask;
+import worldline.ssm.rd.ux.wltwitter.interfaces.TweetChangeListener;
+import worldline.ssm.rd.ux.wltwitter.pojo.Tweet;
+import worldline.ssm.rd.ux.wltwitter.ui.fragments.TweetsFragment;
 import worldline.ssm.rd.ux.wltwitter.utils.Constants;
 
 
 public class WLTwitterActivity extends Activity  {
 
-    //
+//    @Override
+//    public void onViewTweet(Tweet tweet) {
+//        Toast.makeText(this, tweet.text, Toast.LENGTH_LONG).show();
+//    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
 
         //Creation of the subtitle
         //Get string store in intent extras
@@ -33,21 +49,27 @@ public class WLTwitterActivity extends Activity  {
         TextView loginDisplay = (TextView) findViewById(R.id.HelloTexte);
 
         if (intent != null) {
-            loginDisplay.setText( login + ": Welcome  to your Twitter App! Let's tweet!");
+            loginDisplay.setText(login + ": Welcome  to your Twitter App! Let's tweet!");
+
+            if(login != null){
+                //Set the sub to be a String
+                getActionBar().setSubtitle((login));
+
+
+                //Thread
+//                RetrieveTweetsAsyncTask task = new RetrieveTweetsAsyncTask();
+//                task.execute(login);
+            }
 
 
         }
 
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
 
-        if(login != null){
-            //Set the sub to be a String
-            getActionBar().setSubtitle((login));
-
-
-            //Thread
-            RetrieveTweetsAsyncTask task = new RetrieveTweetsAsyncTask();
-            task.execute(login);
-        }
+        TweetsFragment fragment = new TweetsFragment();
+        transaction.add(R.id.container, fragment);
+        transaction.commit();
 
 
     }
@@ -88,6 +110,8 @@ public class WLTwitterActivity extends Activity  {
         finish(); // Close the activity and go to the login one.
     }
 }
+
+
 
 
 
