@@ -52,9 +52,11 @@ public class TweetsFragment extends Fragment implements TweetChangeListener, Ada
         progressBar.setLayoutParams(new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT, Gravity.CENTER));
         progressBar.setIndeterminate(true);
 
+
         mListView.setEmptyView(progressBar);
 
         ViewGroup root = (ViewGroup) rootView.findViewById(R.id.tweetRootRelativeLayout);
+
         root.addView(progressBar);
 
         mListView.setOnItemClickListener(this);
@@ -78,7 +80,7 @@ public class TweetsFragment extends Fragment implements TweetChangeListener, Ada
     @Override
     public void onTweetRetrived(List<Tweet> tweets) {
 
-        final ArrayAdapter<Tweet> arrayAdapter = new ArrayAdapter<Tweet>(getActivity(), android.R.layout.simple_expandable_list_item_1, tweets);
+        final ArrayAdapter<Tweet> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_expandable_list_item_1, tweets);
         mListView.setAdapter(arrayAdapter);
 
     }

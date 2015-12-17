@@ -8,5 +8,5 @@ import worldline.ssm.rd.ux.wltwitter.pojo.Tweet;
  * Created by cassar on 14/12/15.
  */
 public interface TweetChangeListener {
-    public void  onTweetRetrived(List<Tweet> tweets);
+    void  onTweetRetrived(List<Tweet> tweets);
 }
