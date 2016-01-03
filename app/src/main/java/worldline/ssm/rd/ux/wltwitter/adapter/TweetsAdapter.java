@@ -4,10 +4,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 import worldline.ssm.rd.ux.wltwitter.R;
 import worldline.ssm.rd.ux.wltwitter.WLTwitterApplication;
@@ -19,11 +20,13 @@ import worldline.ssm.rd.ux.wltwitter.pojo.Tweet;
 public class TweetsAdapter extends BaseAdapter {
 
     private List<Tweet> mTweets;
-    LayoutInflater mInflater = LayoutInflater.from(WLTwitterApplication.getContext());
+    private LayoutInflater mInflater;
+
 
 
     public TweetsAdapter(List<Tweet> tweets) {
-        mTweets = tweets;
+        this.mTweets = tweets;
+        mInflater = LayoutInflater.from(WLTwitterApplication.getContext());
     }
 
     @Override
@@ -43,15 +46,47 @@ public class TweetsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final View view = mInflater.inflate(R.layout.custom_tweet_layout, null);
-        final Tweet tweet = (Tweet) getItem(position);
-        final TextView userName = (TextView) view.findViewById(R.id.tweetListItemNameTextView);
-        userName.setText(tweet.user.name);
-        final TextView userAlias =(TextView) view.findViewById(R.id.tweetListItemAliasTextView);
-        userAlias.setText("@" + tweet.user.screenName);
-        final TextView text = (TextView) view.findViewById(R.id.tweetListItemTextView);
-        text.setText(tweet.text);
-        return view;
+        ViewHolder holder;
+        if(convertView == null){
+            convertView=mInflater.inflate(R.layout.custom_tweet_layout, null);
 
+            // Instantiate the ViewHolder
+            holder = new ViewHolder(convertView);
+
+            // Set as tag to the convertView to retrieve it easily
+            convertView.setTag(holder);
+
+        }else{
+            holder = (ViewHolder) convertView.getTag();
+        }
+//        final View view = mInflater.inflate(R.layout.custom_tweet_layout, null);
+        final Tweet tweet = (Tweet) getItem(position);
+
+        holder.text.setText(tweet.text);
+
+        holder.alias.setText(tweet.user.screenName);
+
+        holder.name.setText(tweet.user.name);
+
+        return convertView;
+
+    }
+
+    private class ViewHolder {
+        public ImageView image;
+        public TextView name;
+        public TextView alias;
+        public TextView text;
+        public Button button;
+
+        public ViewHolder(View convertView) {
+            image = (ImageView) convertView.findViewById(R.id.imageProfil);
+            name = (TextView) convertView.findViewById(R.id.tweetListItemNameTextView);
+            alias = (TextView) convertView.findViewById(R.id.tweetListItemAliasTextView);
+            text = (TextView) convertView.findViewById(R.id.tweetListItemTextView);
+            button = (Button) convertView.findViewById(R.id.button2);
+
+
+        }
     }
 }
