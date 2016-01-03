@@ -27,6 +27,10 @@ public class WLTwitterLoginActivity extends Activity implements View.OnClickList
         //Action when click
         findViewById(R.id.button).setOnClickListener(this);
 
+
+
+        // LOG AUTO
+        
         //Launch main activity if login and password are not NULL
         Context context = getApplication();
         SharedPreferences sharedPref = context.getSharedPreferences(Constants.Preferences.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
@@ -37,6 +41,8 @@ public class WLTwitterLoginActivity extends Activity implements View.OnClickList
             intent.putExtras(extras);
             startActivity(intent);
         }
+
+
 
 
 

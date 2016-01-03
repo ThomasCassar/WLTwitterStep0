@@ -12,13 +12,17 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
+import worldline.ssm.rd.ux.wltwitter.async.RetrieveTweetsAsyncTask;
+import worldline.ssm.rd.ux.wltwitter.interfaces.TweetChangeListener;
 import worldline.ssm.rd.ux.wltwitter.interfaces.TweetListener;
 import worldline.ssm.rd.ux.wltwitter.pojo.Tweet;
 import worldline.ssm.rd.ux.wltwitter.ui.fragments.TweetsFragment;
 import worldline.ssm.rd.ux.wltwitter.utils.Constants;
 
 
-public class WLTwitterActivity extends Activity implements TweetListener {
+public class WLTwitterActivity extends Activity implements TweetChangeListener, TweetListener{
 
 
     @Override
@@ -47,12 +51,13 @@ public class WLTwitterActivity extends Activity implements TweetListener {
 
 
                 //Thread
-//                RetrieveTweetsAsyncTask task = new RetrieveTweetsAsyncTask();
-//                task.execute(login);
+                RetrieveTweetsAsyncTask task = new RetrieveTweetsAsyncTask(this);
+                task.execute(login);
             }
 
 
         }
+
 
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -109,6 +114,11 @@ public class WLTwitterActivity extends Activity implements TweetListener {
     @Override
     public void onViewTweet(Tweet tweet) {
         Toast.makeText(this,tweet.text,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onTweetRetrived(List<Tweet> tweets) {
+
     }
 }
 

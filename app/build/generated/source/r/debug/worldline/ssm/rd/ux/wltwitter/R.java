@@ -1438,8 +1438,9 @@ containing a value of this type.
         public static final int activity_main=0x7f040017;
         public static final int custom_tweet_layout=0x7f040018;
         public static final int fragment_wltwitter=0x7f040019;
-        public static final int layout=0x7f04001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f04001b;
+        public static final int fragment_wltwitter_tweet=0x7f04001a;
+        public static final int layout=0x7f04001b;
+        public static final int support_simple_spinner_dropdown_item=0x7f04001c;
     }
     public static final class menu {
         public static final int menu_main=0x7f0e0000;

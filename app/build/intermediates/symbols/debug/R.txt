@@ -464,8 +464,9 @@ int layout abc_simple_dropdown_hint 0x7f040016
 int layout activity_main 0x7f040017
 int layout custom_tweet_layout 0x7f040018
 int layout fragment_wltwitter 0x7f040019
-int layout layout 0x7f04001a
-int layout support_simple_spinner_dropdown_item 0x7f04001b
+int layout fragment_wltwitter_tweet 0x7f04001a
+int layout layout 0x7f04001b
+int layout support_simple_spinner_dropdown_item 0x7f04001c
 int menu menu_main 0x7f0e0000
 int menu wltwitter 0x7f0e0001
 int mipmap ic_launcher 0x7f030000
