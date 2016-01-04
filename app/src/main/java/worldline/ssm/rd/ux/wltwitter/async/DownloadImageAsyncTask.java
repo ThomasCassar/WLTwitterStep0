@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 
+import worldline.ssm.rd.ux.wltwitter.components.ImageMemoryCache;
 import worldline.ssm.rd.ux.wltwitter.helpers.TwitterHelper;
 
 /**
@@ -13,8 +14,11 @@ public class DownloadImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
 
     private final ImageView imageView;
 
-    public DownloadImageAsyncTask(ImageView imageView) {
+    private final ImageMemoryCache mImageMemoryCache;
+
+    public DownloadImageAsyncTask(ImageView imageView, ImageMemoryCache mImageMemoryCache) {
         this.imageView = imageView;
+        this.mImageMemoryCache = mImageMemoryCache;
     }
 
 
@@ -26,6 +30,10 @@ public class DownloadImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
 
             try{
                 final Bitmap bitmap = TwitterHelper.getTwitterUserImage(imageUrl);
+                if (mImageMemoryCache != null){
+                    mImageMemoryCache.getBitmapFromMemoryCache(imageUrl);
+                }
+                return bitmap;
             } catch ( Exception e){
                 e.printStackTrace();
             }

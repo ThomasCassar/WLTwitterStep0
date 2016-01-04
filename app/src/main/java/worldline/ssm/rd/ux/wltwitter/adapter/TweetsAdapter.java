@@ -1,5 +1,6 @@
 package worldline.ssm.rd.ux.wltwitter.adapter;
 
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import java.util.List;
 import worldline.ssm.rd.ux.wltwitter.R;
 import worldline.ssm.rd.ux.wltwitter.WLTwitterApplication;
 import worldline.ssm.rd.ux.wltwitter.async.DownloadImageAsyncTask;
+import worldline.ssm.rd.ux.wltwitter.components.ImageMemoryCache;
 import worldline.ssm.rd.ux.wltwitter.pojo.Tweet;
 
 /**
@@ -22,12 +24,16 @@ public class TweetsAdapter extends BaseAdapter {
 
     private List<Tweet> mTweets;
     private LayoutInflater mInflater;
-
+    private final ImageMemoryCache mImageMemoryCache;
 
 
     public TweetsAdapter(List<Tweet> tweets) {
         this.mTweets = tweets;
         mInflater = LayoutInflater.from(WLTwitterApplication.getContext());
+
+        final int maxMemory = (int) (Runtime.getRuntime().maxMemory()/1024);
+        final int cacheSize = maxMemory /16;
+        mImageMemoryCache = new ImageMemoryCache(cacheSize);
     }
 
     @Override
@@ -69,7 +75,14 @@ public class TweetsAdapter extends BaseAdapter {
 
         holder.name.setText(tweet.user.name);
 
-        new DownloadImageAsyncTask(holder.image).execute(tweet.user.profileImageUrl);
+        final Bitmap image = mImageMemoryCache.getBitmapFromMemoryCache(tweet.user.profileImageUrl);
+
+        if (image == null){
+            new DownloadImageAsyncTask(holder.image, mImageMemoryCache).execute(tweet.user.profileImageUrl);
+        }else {
+            holder.image.setImageBitmap(image);
+        }
+
 
         return convertView;
 
