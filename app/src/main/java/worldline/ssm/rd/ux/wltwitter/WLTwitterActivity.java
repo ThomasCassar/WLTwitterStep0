@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import worldline.ssm.rd.ux.wltwitter.async.RetrieveTweetsAsyncTask;
 import worldline.ssm.rd.ux.wltwitter.interfaces.TweetChangeListener;
 import worldline.ssm.rd.ux.wltwitter.interfaces.TweetListener;
 import worldline.ssm.rd.ux.wltwitter.pojo.Tweet;
+import worldline.ssm.rd.ux.wltwitter.ui.fragments.TweetFragment;
 import worldline.ssm.rd.ux.wltwitter.ui.fragments.TweetsFragment;
 import worldline.ssm.rd.ux.wltwitter.utils.Constants;
 
@@ -114,6 +116,20 @@ public class WLTwitterActivity extends Activity implements TweetChangeListener, 
     @Override
     public void onViewTweet(Tweet tweet) {
         Toast.makeText(this,tweet.text,Toast.LENGTH_LONG).show();
+
+        final FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        final TweetFragment tweetFragment = new TweetFragment();
+
+        final Bundle bundle = new Bundle();
+        bundle.putString(Constants.Preferences.PREF_LOGIN,tweet.user.name);
+        bundle.putString(Constants.Twitter.DEFAULT_USERNAME,tweet.user.screenName);
+        bundle.putString(Constants.Preferences.PREF_TEXTE,tweet.text);
+
+        tweetFragment.setArguments(bundle);
+        transaction.add(R.id.container,tweetFragment);
+        transaction.setCustomAnimations(R.animator.slide_in_right, 0 , 0 , R.animator.slide_in_left);
+        transaction.addToBackStack(null).commit();
     }
 
     @Override

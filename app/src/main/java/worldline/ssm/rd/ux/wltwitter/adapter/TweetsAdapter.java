@@ -12,6 +12,7 @@ import java.util.List;
 
 import worldline.ssm.rd.ux.wltwitter.R;
 import worldline.ssm.rd.ux.wltwitter.WLTwitterApplication;
+import worldline.ssm.rd.ux.wltwitter.async.DownloadImageAsyncTask;
 import worldline.ssm.rd.ux.wltwitter.pojo.Tweet;
 
 /**
@@ -67,6 +68,8 @@ public class TweetsAdapter extends BaseAdapter {
         holder.alias.setText(tweet.user.screenName);
 
         holder.name.setText(tweet.user.name);
+
+        new DownloadImageAsyncTask(holder.image).execute(tweet.user.profileImageUrl);
 
         return convertView;
 
